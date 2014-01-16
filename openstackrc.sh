@@ -88,6 +88,14 @@ export RAX_CREDS_FILE=~/.rax_creds_file
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 #
+# set LC_ALL to a more common character set en_US.UTF-8
+# the current ubuntu image sets this to just en_US
+# and that doesn't seem to be available on the rackspace
+# cloud servers
+#
+export LC_ALL=en_US.UTF-8
+
+#
 # Setup openstack commandline overides for certain command line. Source functions from openstack_cli_functions
 #
 source ./.openstack_cli_functions.sh
