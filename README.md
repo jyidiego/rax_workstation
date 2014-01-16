@@ -23,6 +23,11 @@ cd rax_workstation
 vagrant up
 ```
 
+ssh into the rax_workstation
+```
+vagrant ssh
+```
+
 SSH keys are awesome so create a keypair as below, because this is a demo/development
 I opted for less security and just pressed enter for the passphrase
 
