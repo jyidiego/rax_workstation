@@ -117,4 +117,80 @@ Out[5]:
 
 ```
 
+How about boot a server via commandline?
+```
+vagrant@rax-workstation:~$ nova boot --key-name ansible_demo --image 80fbcb55-b206-41f9-9bc2-2dd7aac6c061 \
+> --flavor performance1-1 --poll first_boot
++------------------------+--------------------------------------+
+| Property               | Value                                |
++------------------------+--------------------------------------+
+| status                 | BUILD                                |
+| updated                | 2014-01-16T01:53:24Z                 |
+| OS-EXT-STS:task_state  | scheduling                           |
+| key_name               | ansible_demo                         |
+| image                  | Ubuntu 12.04 LTS (Precise Pangolin)  |
+| hostId                 |                                      |
+| OS-EXT-STS:vm_state    | building                             |
+| flavor                 | 1 GB Performance                     |
+| id                     | ea3b7250-84b5-414d-b531-bf4dd830cf18 |
+| user_id                | 10044828                             |
+| name                   | first_boot                           |
+| adminPass              | Q9WUzLfDDr7D                         |
+| tenant_id              | 843368                               |
+| created                | 2014-01-16T01:53:23Z                 |
+| OS-DCF:diskConfig      | AUTO                                 |
+| accessIPv4             |                                      |
+| accessIPv6             |                                      |
+| progress               | 0                                    |
+| OS-EXT-STS:power_state | 0                                    |
+| config_drive           |                                      |
+| metadata               | {}                                   |
++------------------------+--------------------------------------+
+Instance building... 100% complete
+Finished
+vagrant@rax-workstation:~$ nova ssh first_boot
+The authenticity of host '162.242.223.59 (162.242.223.59)' can't be established.
+ECDSA key fingerprint is 4e:e3:91:f2:d3:aa:fa:66:d7:64:89:f6:e0:f1:90:43.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '162.242.223.59' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 12.04.3 LTS (GNU/Linux 3.2.0-55-virtual x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Thu Jan 16 01:54:26 UTC 2014
+
+  System load:  0.23              Processes:           67
+  Usage of /:   4.9% of 19.68GB   Users logged in:     0
+  Memory usage: 4%                IP address for eth0: 162.242.223.59
+  Swap usage:   0%                IP address for eth1: 10.176.167.35
+
+  Graph this data and manage this system at https://landscape.canonical.com/
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+-bash: warning: setlocale: LC_ALL: cannot change locale (en_US)
+_____________________________________________________________________
+WARNING! Your environment specifies an invalid locale.
+ This can affect your user experience significantly, including the
+ ability to manage packages. You may install the locales by running:
+
+   sudo apt-get install language-pack-en
+     or
+   sudo locale-gen en_US
+
+To see all available language packs, run:
+   apt-cache search "^language-pack-[a-z][a-z]$"
+To disable this message for all users, run:
+   sudo touch /var/lib/cloud/instance/locale-check.skip
+_____________________________________________________________________
+
+-bash: warning: setlocale: LC_ALL: cannot change locale (en_US)
+root@first-boot:~# 
+```
 
