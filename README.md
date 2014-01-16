@@ -86,6 +86,35 @@ vagrant@rax-workstation:~$ nova list
 :7801:0103:90a8:d07e:ff20:25e3, 162.242.231.12; private=10.176.160.241                      |
 | 91e8c268-09fd-4110-9784-3e20a51aa5b7 | iad.docker          | ACTIVE | None       | Running     | public=162.242.212.132, 2001:4802:7801:0102:90a8:d07e:ff20:0daf; private=10.176.130.19                      |
 | c9469ebb-d8f1-474d-8816-a834b41a7ff5 | network_test        | ACTIVE | None       | Running     | JOHNYI=192.168.0.2; public=2001:4802:7801:0103:90a8:d07e:ff20:1d8d, 162.242.232.4; private=10.176.166.249   |
+
+vagrant@rax-workstation:~$ ipython
+Python 2.7.3 (default, Sep 26 2013, 20:03:06) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 0.12.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: import pyrax
+
+In [2]: pyrax.set_setting('identity_type', 'rackspace')
+
+In [3]: pyrax.set_cre
+pyrax.set_credential_file  pyrax.set_credentials      
+
+In [3]: pyrax.set_credential_file('./.rax_creds_file')
+
+In [4]: cs = pyrax.connect_to_cloudservers(region='IAD')
+
+In [5]: cs.list()
+Out[5]: 
+[<Server: network_test>,
+ <Server: docker.example.com>,
+ <Server: queue.demo>,
+ <Server: iad.docker>]
+
 ```
 
 
