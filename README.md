@@ -13,4 +13,14 @@ In order to use rax_workstation you're going to need:
 Getting started is easy first clone this repository
 
 ```
-git clone 
+git clone https://github.com/rackerlabs/rax_workstation.git
+```
+
+Once you've cloned the repository just vagrant up the box
+
+```
+cd rax_workstation
+vagrant up
+``
+
+
