@@ -96,6 +96,16 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 export LC_ALL=en_US.UTF-8
 
 #
+# Configure the lava client
+#
+# export LAVA_API_URL=https://dfw.bigdata.api.rackspacecloud.com/v1.0/12345
+export AUTH_TOKEN=$CLOUD_SERVERS_API_TOKEN
+export LAVA_API_URL=$(keystone catalog --service rax:bigdata 2> /dev/null | grep publicURL | cut -d ' ' -f4)
+if [ -z $LAVA_API_URL ];then
+  echo "WARNING: The lava client won't work for the region $OS_REGION_NAME, rax:bigdata service wasn't found"
+fi
+
+#
 # Setup openstack commandline overides for certain command line. Source functions from openstack_cli_functions
 #
 source ./.openstack_cli_functions.sh
