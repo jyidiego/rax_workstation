@@ -38,7 +38,8 @@ export OS_REGION_NAME=$OS_REGION_NAME
 echo -n "Please enter HEAT tenant ID (Rackspace Account ID): "
 read HEAT_TENANT_ID
 export HEAT_TENANT_ID=${HEAT_TENANT_ID}
-export HEAT_URL=https://api.rs-heat.com/v1/${HEAT_TENANT_ID}/
+# export HEAT_URL=https://api.rs-heat.com/v1/${HEAT_TENANT_ID}/
+export HEAT_URL=https://${OS_REGION_NAME}.orchestration.api.rackspacecloud.com/v1/${HEAT_TENANT_ID}
 
 #
 # Setup clb cache file for Cloud Load Balancers
@@ -88,18 +89,14 @@ export RAX_CREDS_FILE=~/.rax_creds_file
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 #
-# set LC_ALL to a more common character set en_US.UTF-8
-# the current ubuntu image sets this to just en_US
-# and that doesn't seem to be available on the rackspace
-# cloud servers
-#
+# set LC_ALL to a more common character set
 export LC_ALL=en_US.UTF-8
 
 #
 # Configure the lava client
 #
-# export LAVA_API_URL=https://dfw.bigdata.api.rackspacecloud.com/v1.0/12345
 export AUTH_TOKEN=$CLOUD_SERVERS_API_TOKEN
+# export LAVA_API_URL=https://dfw.bigdata.api.rackspacecloud.com/v1.0/12345
 export LAVA_API_URL=$(keystone catalog --service rax:bigdata 2> /dev/null | grep publicURL | cut -d ' ' -f4)
 if [ -z $LAVA_API_URL ];then
   echo "WARNING: The lava client won't work for the region $OS_REGION_NAME, rax:bigdata service wasn't found"
