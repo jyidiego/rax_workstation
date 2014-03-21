@@ -39,7 +39,7 @@ echo -n "Please enter HEAT tenant ID (Rackspace Account ID): "
 read HEAT_TENANT_ID
 export HEAT_TENANT_ID=${HEAT_TENANT_ID}
 # export HEAT_URL=https://api.rs-heat.com/v1/${HEAT_TENANT_ID}/
-export HEAT_URL=https://${OS_REGION_NAME}.orchestration.api.rackspacecloud.com/v1/${HEAT_TENANT_ID}
+export HEAT_URL=https://$(echo ${OS_REGION_NAME} | tr '[:upper:]' '[:lower:]').orchestration.api.rackspacecloud.com/v1/${HEAT_TENANT_ID}
 
 #
 # Setup clb cache file for Cloud Load Balancers
