@@ -33,13 +33,24 @@ curl -L http://bit.ly/cbd-client | tar xvzf -;cd python-lava*;python setup.py in
 #
 # Remove source directories
 rm -rf $HOME/clb $HOME/cloudlb $HOME/python-lava*
+
+#
+# NOT NEEDED: Install chef client and knife
+#
+# curl -L https://www.opscode.com/chef/install.sh | sudo bash
+# dpkg -i /vagrant/chef_11.6.0-1.ubuntu.12.04_amd64.deb
+# /opt/chef/embedded/bin/gem install --no-rdoc --no-ri knife-rackspace
+# /opt/chef/embedded/bin/gem install berkshelf
+
 #
 # Install chef client and knife
 #
-curl -L https://www.opscode.com/chef/install.sh | sudo bash
-# dpkg -i /vagrant/chef_11.6.0-1.ubuntu.12.04_amd64.deb
-/opt/chef/embedded/bin/gem install --no-rdoc --no-ri knife-rackspace
-/opt/chef/embedded/bin/gem install berkshelf
+curl -L https://www.opscode.com/chef/install.sh | sudo bash /dev/stdin -P chefdk
+
+#
+# Install knife-rackspace plugin
+#
+su - vagrant -c "/opt/chefdk/embedded/bin/gem install knife-rackspace"
 
 #
 # Create message of the day file
