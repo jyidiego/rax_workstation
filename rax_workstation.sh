@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add vagrant to the staff group
+usermod -G staff vagrant
+
 apt-get -y update
 apt-get -y install curl build-essential libxml2-dev libxslt-dev git zlib1g-dev libssl-dev subversion dkms
 # apt-get -y install linux-headers-generic linux-image-extra-`uname -r`
