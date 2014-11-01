@@ -34,6 +34,7 @@ echo -n "Please enter your Region (ORD, DFW, IAD, SYD): "
 read OS_REGION_NAME
 export OS_REGION_NAME_UPPER=$(echo $OS_REGION_NAME | tr '[:lower:]' '[:upper:]')
 export OS_REGION_NAME_LOWER=$(echo $OS_REGION_NAME | tr '[:upper:]' '[:lower:]')
+export OS_REGION_NAME=$OS_REGION_NAME_UPPER
 
 # HEAT Tenant ID, needed to make this work.
 echo -n "Please enter HEAT tenant ID (Rackspace Account ID): "
@@ -180,6 +181,9 @@ export LAVA_API_URL=$(keystone catalog --service rax:bigdata 2> /dev/null | grep
 if [ -z $LAVA_API_URL ];then
   echo "WARNING: The lava client won't work for the region $OS_REGION_NAME, rax:bigdata service wasn't found"
 fi
+
+# Add vagrant to the staff group
+sudo usermod -G staff vagrant
 
 #
 # Setup openstack commandline overides for certain command line. Source functions from openstack_cli_functions
