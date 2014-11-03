@@ -183,7 +183,7 @@ if [ -z $LAVA_API_URL ];then
 fi
 
 # Add vagrant to the staff group
-sudo usermod -G staff vagrant
+# sudo usermod -G staff vagrant
 
 #
 # Setup openstack commandline overides for certain command line. Source functions from openstack_cli_functions
